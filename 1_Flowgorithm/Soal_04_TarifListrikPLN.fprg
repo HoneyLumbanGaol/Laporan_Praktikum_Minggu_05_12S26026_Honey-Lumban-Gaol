@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_04_TarifListrikPLN"/>
+        <attribute name="authors" value="Asus"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 05:03:48 PM"/>
+        <attribute name="created" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTswMjo0MDoxNyBQTTsyNzY0"/>
+        <attribute name="edited" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTswNTowMzo0OCBQTTszOzI4ODA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="jamnyalamin, ppj, daya, energi, biaya, tarifb1, tarifb2, tarifb3, totalakhir" type="Integer" array="False" size=""/>
+            <declare name="golongandaya" type="String" array="False" size=""/>
+            <output expression="&quot;Berapa daya yang kamu miliki?&quot;" newline="True"/>
+            <input variable="daya"/>
+            <output expression="&quot;Berapa energi listrik yang kamu miliki? (satuan kWh)&quot;" newline="True"/>
+            <input variable="energi"/>
+            <output expression="&quot;Masukkan golongan berapa&quot;" newline="True"/>
+            <output expression="&quot;r1 = 900 VA&quot;" newline="True"/>
+            <output expression="&quot;r2 = 1300-2200 VA&quot;" newline="True"/>
+            <output expression="&quot;r3 = &gt;=3500 VA&quot;" newline="True"/>
+            <input variable="golongandaya"/>
+            <assign variable="tarifb1" expression="1000"/>
+            <assign variable="tarifb2" expression="1500"/>
+            <assign variable="tarifb3" expression="1700"/>
+            <if expression="energi&gt;=0 &amp;&amp; energi&lt;=50">
+                <then>
+                    <assign variable="biaya" expression="energi*tarifb1"/>
+                </then>
+                <else>
+                    <if expression="energi&gt;=51 &amp;&amp; energi&lt;=150">
+                        <then>
+                            <assign variable="biaya" expression="(50*tarifb1)+(energi-50)*tarifb2"/>
+                        </then>
+                        <else>
+                            <if expression="energi&gt;150">
+                                <then>
+                                    <assign variable="biaya" expression="(50*tarifb1)+(100*tarifb2)+((energi-150)*tarifb3)"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <assign variable="jamnyalamin" expression="40*(daya/1000)*tarifb1"/>
+            <if expression="biaya&lt;jamnyalamin">
+                <then>
+                    <assign variable="biaya" expression="jamnyalamin"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="golongandaya = &quot;r1&quot; || golongandaya = &quot;r2&quot;">
+                <then>
+                    <assign variable="ppj" expression="biaya * (5/100)"/>
+                    <assign variable="totalakhir" expression="biaya+ppj"/>
+                </then>
+                <else>
+                    <assign variable="ppj" expression="biaya * (8/100)"/>
+                    <assign variable="totalakhir" expression="biaya+ppj"/>
+                </else>
+            </if>
+            <output expression="&quot;Biaya listrik setelah minimum charge adalah Rp. &quot; &amp;biaya" newline="True"/>
+            <output expression="&quot;Total PPJ yang diterima adalah &quot; &amp;ppj" newline="True"/>
+            <output expression="&quot;Total tagihan listriknya adalah Rp. &quot; &amp;totalakhir" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

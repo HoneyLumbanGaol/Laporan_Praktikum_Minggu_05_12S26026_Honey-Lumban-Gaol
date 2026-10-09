@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_02_DonorDarahPMI"/>
+        <attribute name="authors" value="Asus"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 05:03:58 PM"/>
+        <attribute name="created" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTsxMDo0NDoxNiBBTTsyNzUx"/>
+        <attribute name="edited" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTswNTowMzo1OCBQTTszOzI4ODE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="skelayakan, hasParentalConsent" type="Boolean" array="False" size=""/>
+            <declare name="usia, beratbadan, intervaldonor, sistolik, diastolik" type="Integer" array="False" size=""/>
+            <declare name="hemoglobin" type="Real" array="False" size=""/>
+            <output expression="&quot;Berapa usia pendonor?&quot;" newline="True"/>
+            <input variable="usia"/>
+            <output expression="&quot;Berapa berat badan pendonor? (dalam kg)&quot;" newline="True"/>
+            <input variable="beratbadan"/>
+            <output expression="&quot;Berapa tekanan darah pendonor? (untuk Sistolik)&quot;" newline="True"/>
+            <input variable="sistolik"/>
+            <output expression="&quot;Berapa tekanan darah pendonor? (untuk diastolik)&quot;" newline="True"/>
+            <input variable="diastolik"/>
+            <output expression="&quot;Berapa hemoglobin pendonor?&quot;" newline="True"/>
+            <input variable="hemoglobin"/>
+            <output expression="&quot;Berapa rentang akhir pendonor mendonorkan darah? (dalam hari)&quot;" newline="True"/>
+            <input variable="intervaldonor"/>
+            <if expression="usia &gt;=17 &amp;&amp; usia &lt;=60">
+                <then>
+                    <if expression="usia =17">
+                        <then>
+                            <output expression="&quot;Apakah anda sudah mendapatkan izin orang tua? (true/false)&quot;" newline="True"/>
+                            <input variable="hasParentalConsent"/>
+                            <while expression="hasParentalConsent == false">
+                                <output expression="&quot;HARUS ADA IZIN DARI ORANG TUA! COBA LAGI!&quot;" newline="True"/>
+                                <input variable="hasParentalConsent"/>
+                            </while>
+                        </then>
+                        <else/>
+                    </if>
+                    <if expression="beratbadan &gt;=45 &amp;&amp; beratbadan &lt;= 54">
+                        <then>
+                            <output expression="&quot;Anda mendapatkan kantong 350 ML!&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="beratbadan&gt;=55">
+                                <then>
+                                    <output expression="&quot;Anda mendapatkan kantong 450 ML!&quot;" newline="True"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                    <if expression="hemoglobin &gt;12.5">
+                        <then>
+                            <assign variable="skelayakan" expression="usia &gt;=17 &amp;&amp; usia &lt;=60 &amp;&amp; beratbadan&gt;=45 &amp;&amp; beratbadan &lt;=54 &amp;&amp; sistolik&gt;=100 &amp;&amp; sistolik &lt;=140 &amp;&amp; diastolik &gt;=70 &amp;&amp; diastolik &lt;=90 &amp;&amp; hemoglobin &gt;=12.5 &amp;&amp; hemoglobin &lt;=17 &amp;&amp; intervaldonor&gt;=60"/>
+                            <output expression="&quot;Status kelayakan anda donor darah PMI : &quot; &amp;skelayakan" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Kemungkinan anda mengalami anemia! Segera periksa resikonya!&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;MAAF! ANDA TIDAK BISA MENDONORKAN DARAH!&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

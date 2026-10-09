@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_03_BeasiswaITDel"/>
+        <attribute name="authors" value="Asus"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 05:03:54 PM"/>
+        <attribute name="created" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTswMTo0Mjo1MSBQTTsyNzYz"/>
+        <attribute name="edited" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTswNTowMzo1NCBQTTsyOzI4NzY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="IPK" type="Real" array="False" size=""/>
+            <declare name="isJuaraTalenta, rekomendasiwali" type="Boolean" array="False" size=""/>
+            <declare name="poinpelanggaran, skorprestasi, penghasilanortu, tanggungan, penghasilankapita" type="Integer" array="False" size=""/>
+            <output expression="&quot;SELAMAT DATANG KE SELEKSI BEASISWA MULTI-TIER IT DEL!&quot;" newline="True"/>
+            <output expression="&quot;Berapa skor prestasi yang anda miliki?&quot;" newline="True"/>
+            <input variable="skorprestasi"/>
+            <output expression="&quot;Berapakah IPK yang kamu miliki?&quot;" newline="True"/>
+            <input variable="IPK"/>
+            <output expression="&quot;Berapa penghasilan orang tua?&quot;" newline="True"/>
+            <input variable="penghasilanortu"/>
+            <output expression="&quot;Berapa tanggungan yang dimiliki?&quot;" newline="True"/>
+            <input variable="tanggungan"/>
+            <output expression="&quot;Apakah ada surat rekomendasi dari wali? (true/false)&quot;" newline="True"/>
+            <input variable="rekomendasiwali"/>
+            <assign variable="penghasilankapita" expression="penghasilanortu/tanggungan"/>
+            <output expression="&quot;Berapa poin pelanggaran yang anda miliki?&quot;" newline="True"/>
+            <input variable="poinpelanggaran"/>
+            <if expression="poinpelanggaran&gt;=3">
+                <then>
+                    <output expression="&quot;MAAF! ANDA GUGUR!&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="IPK &gt;=3.75 &amp;&amp; skorprestasi&gt;=80 &amp;&amp; penghasilanortu&lt;=5000000 &amp;&amp; poinpelanggaran=0">
+                        <then>
+                            <output expression="&quot;SELAMAT! ANDA MENDAPATKAN BEASISWA UNGGULAN 100%!&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="IPK&gt;=3.00 &amp;&amp; tanggungan &gt;= 3 &amp;&amp; penghasilankapita &lt;=1250000 &amp;&amp; rekomendasiwali == true &amp;&amp; poinpelanggaran=0">
+                                <then>
+                                    <output expression="&quot;SELAMAT! ANDA MENDAPATKAN BEASISWA BANTUAN UKT 50%!&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Apakah anda juara Talenta? (True/False)&quot;" newline="True"/>
+                                    <input variable="isJuaraTalenta"/>
+                                    <if expression="isJuaraTalenta == true &amp;&amp; IPK&gt;=2.75 &amp;&amp; poinpelanggaran=0">
+                                        <then>
+                                            <output expression="&quot;Selamat! Anda mendapatkan Beasiswa Jalur Afirmasi Talenta!&quot;" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="poinpelanggaran &lt;= 2 &amp;&amp; poinpelanggaran&gt;0 &amp;&amp; IPK &gt;= 3.85">
+                                                <then>
+                                                    <output expression="&quot;DITERIMA BERSYARAT (Probation)&quot;" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;MAAF! ANDA TIDAK LULUS SELEKSI BEASISWA MULTI-TIER IT DEL!&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

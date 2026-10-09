@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal_01_SmartParking"/>
+        <attribute name="authors" value="Asus"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-09 05:04:03 PM"/>
+        <attribute name="created" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTsxMDoxNzoyOCBBTTsyNzU0"/>
+        <attribute name="edited" value="QXN1cztMQVBUT1AtTzdUUlJNMjg7MjAyNi0xMC0wOTswNTowNDowMyBQTTsyOzI4NzE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="totalparkir, diskon" type="Real" array="False" size=""/>
+            <declare name="jam, durasijam, JAMPERTAMAM, JAMPERTAMAS" type="Integer" array="False" size=""/>
+            <declare name="voucher" type="Boolean" array="False" size=""/>
+            <declare name="jeniskendaraan" type="String" array="False" size=""/>
+            <assign variable="JAMPERTAMAM" expression="5000"/>
+            <assign variable="JAMPERTAMAS" expression="2000"/>
+            <output expression="&quot;Jenis kendaraan yang dimiliki (M/S)!&quot;" newline="True"/>
+            <output expression="&quot;M = Mobil&quot;" newline="True"/>
+            <output expression="&quot;S=Motor&quot;" newline="True"/>
+            <input variable="jeniskendaraan"/>
+            <output expression="&quot;Berapa lama kamu parkir (dalam satuan jam)?&quot;" newline="True"/>
+            <input variable="durasijam"/>
+            <if expression="durasijam&lt;=2 &amp;&amp; jeniskendaraan = &quot;M&quot;">
+                <then>
+                    <output expression="&quot;Uang PARKIR = Rp. &quot; &amp;JAMPERTAMAM" newline="True"/>
+                </then>
+                <else>
+                    <if expression="durasijam&gt;2 &amp;&amp; jeniskendaraan = &quot;M&quot;">
+                        <then>
+                            <assign variable="jam" expression="durasijam-2"/>
+                            <assign variable="Totalparkir" expression="(jam*3000)+ jampertamaM"/>
+                            <output expression="&quot;Total parkir kamu Rp. &quot; &amp;totalparkir" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="durasijam&lt;=2 &amp;&amp; jeniskendaraan = &quot;S&quot;">
+                                <then>
+                                    <output expression="&quot;Total parkir kamu Rp. &quot; &amp; JAMPERTAMAS" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="durasijam &gt; 2 &amp;&amp; jeniskendaraan = &quot;S&quot;">
+                                        <then>
+                                            <assign variable="jam" expression="durasijam-2"/>
+                                            <assign variable="totalparkir" expression="(jam*1000)+ jampertamaM"/>
+                                            <output expression="&quot;Total parkir kamu Rp.  &quot; &amp;totalparkir" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="durasijam&gt;12 &amp;&amp; jeniskendaraan = &quot;M&quot;">
+                                                <then>
+                                                    <assign variable="jam" expression="durasijam-2"/>
+                                                    <assign variable="totalparkir" expression="(jam*3000)+ jampertamaM + 25000"/>
+                                                    <output expression="&quot;Total parkir kamu Rp.  &quot; &amp;totalparkir" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="durasijam&gt;12 &amp;&amp; jeniskendaraan = &quot;S&quot;">
+                                                        <then>
+                                                            <assign variable="jam" expression="durasijam-2"/>
+                                                            <assign variable="totalparkir" expression="(jam*1000)+ jampertamaS + 25000"/>
+                                                            <output expression="&quot;Total parkir kamu Rp.  &quot; &amp;totalparkir" newline="True"/>
+                                                        </then>
+                                                        <else/>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;Apakah punya member voucher? (true/false)&quot;" newline="True"/>
+            <input variable="voucher"/>
+            <if expression="voucher = true">
+                <then>
+                    <assign variable="diskon" expression="totalparkir - ((10/100)*totalparkir)"/>
+                    <output expression="&quot;Total parkir kamu sekarang setelah mendapatkan diskon 10% adalah Rp. &quot; &amp;diskon" newline="True"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
